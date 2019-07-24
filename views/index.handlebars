@@ -3,19 +3,12 @@
     <div class="row">
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
-        <form class="clearfix mb-4" action="POST">
-          <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
-        </form>
-        <h3>Examples:</h3>
+        <h3>Users:</h3> 
+        <p><a href='/create'>Create New</a></p>
         <ul id="example-list" class="list-group">
-          {{#each user}}
+          {{#each users}}
           <li data-id="{{this.id}}" class="list-group-item">
-            <a href="user/{{this.id}}">{{this.username}}</a>
-            <button class="btn btn-danger float-right delete">ｘ</button>
+            <a href="profile/{{this.id}}">{{this.username}}</a>
           </li>
           {{/each}}
         </ul>
@@ -24,5 +17,3 @@
   </div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
