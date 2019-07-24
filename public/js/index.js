@@ -22,6 +22,15 @@ var API = {
       type: "GET"
     });
   },
+  createUser: function() {
+    return $.ajax({
+      data: {
+        username: $("#username")
+      },
+      url: "api/user/",
+      type: "POST"
+    });
+  },
   deleteExample: function(id) {
     return $.ajax({
       url: "api/examples/" + id,
