@@ -1,6 +1,7 @@
 <div class='card content'>
 	<div class="card-title"></div>
 	<div class="card-body">
+		<div class="message"></div>
 		<p>
 			Username:
 			<input type="text" id="username"/>
@@ -20,9 +21,22 @@
 <script>
 	
 	$('#submit').click(function(){
-		$.post('/api/user/create', {
+		$.post('/api/user/login', {
 			username:$('#username').val(),
 			password:$('#password').val(),
+		}).then(function(res){
+			if(res == -1){
+				$('.message').text('Invalid Credentials');
+			}else{
+				$('.message').empty();
+				window.location.replace("/");
+			}
 		})
 	})
 </script>
+
+<style>
+	.message{
+		color:red;
+	}
+</style>

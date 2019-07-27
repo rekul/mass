@@ -2,15 +2,9 @@ module.exports = function(sequelize, DataTypes) {
   var User = sequelize.define("User", {
     username: DataTypes.STRING,
     password: {
-      defaultValue: "password",
-      type: DataTypes.STRING
+    	type:DataTypes.TEXT,
+    	default:'password',
     }
   });
-
-  User.associate = function(models) {
-    User.hasMany(models.Max, {
-      onDelete: "cascade"
-    });
-  };
   return User;
 };
