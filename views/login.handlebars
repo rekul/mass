@@ -21,9 +21,15 @@
 <script>
 	
 	$('#submit').click(function(){
-		$.post('/api/user/login', {
-			username:$('#username').val(),
-			password:$('#password').val(),
+		$.ajax({
+		    xhrFields: {
+		        withCredentials: true
+		    },
+		    beforeSend: function (xhr) {
+		        xhr.setRequestHeader('Authorization', 'Basic ' + btoa($('#username').val() + ':' + $('#password').val()));
+		    },
+		    url: "/api/user/login",
+		    method: "POST",
 		}).then(function(res){
 			if(res == -1){
 				$('.message').text('Invalid Credentials');
@@ -31,7 +37,8 @@
 				$('.message').empty();
 				window.location.replace("/");
 			}
-		})
+		});
+		
 	})
 </script>
 
