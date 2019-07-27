@@ -32,7 +32,9 @@
 		    method: "POST",
 		}).then(function(res){
 			if(res == -1){
-				$('.message').text('Invalid Credentials');
+				$('.message').text('Invalid Password');
+			}else if(res == -2){
+				$('.message').text('Username not found');
 			}else{
 				$('.message').empty();
 				window.location.replace("/");

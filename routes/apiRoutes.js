@@ -11,7 +11,6 @@ module.exports = function(app) {
 
   app.post("/api/user/create", function(req, res) {
     req.body.password = bcrypt.hashSync(req.body.password, 10);
-    console.log(req.body.password);
     db.User.create(req.body).then(function(dbExample) {
       res.json(1);
     });
@@ -33,13 +32,19 @@ module.exports = function(app) {
         console.log('hash:', hash)
         if(bcrypt.compareSync(pass, hash)) {
           console.log(result);
-          res.json(result.id);
           app.locals.user = result.id;
-        } 
+          res.json(result.id);
+        }else{
+          console.log('invalid password');
+          res.json(-1);
+          app.locals.user = -1;
+        }
+      }else{
+         console.log('username not found');
+        res.json(-2);
+        app.locals.user = -1;
       }
-      console.log('user not found');
-      res.json(-1);
-      app.locals.user = -1;
+     
    
     });
   });
